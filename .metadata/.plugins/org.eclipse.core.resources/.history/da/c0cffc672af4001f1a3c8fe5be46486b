@@ -1,0 +1,74 @@
+package com.onlinebookshop.shop.aspect;
+
+import org.aspectj.lang.ProceedingJoinPoint;
+package com.onlineBookShop.Shop.aspect;
+
+import org.aspectj.lang.ProceedingJoinPoint;
+
+import org.aspectj.lang.annotation.After;
+
+import org.aspectj.lang.annotation.Around;
+
+import org.aspectj.lang.annotation.Aspect;
+
+import org.aspectj.lang.annotation.Before;
+
+import org.springframework.stereotype.Component;
+ 
+@Aspect //this is spring aspect
+
+@Component // Register this aspect as spring bean
+
+public class LoggingAspect {
+ 
+	// service package -> services
+
+		// before the methods get called
+
+		// print (logging ->
+
+		// execution point
+
+	    // (* -> tells any return type 
+
+		//service.* -> any class inside the service package
+
+		//.*(..)) -> any method inside the class, (..) -> any parameters
+
+		@Before("execution(* com.onlineBookShop.Shop.service.*.*(..)) ")
+
+		public void beforeServiceMethod() {
+
+			System.out.println("------- Logging from aspects : Method called in service layer---------");
+
+		}
+ 
+		@After("execution(* com.onlineBookShop.Shop.service.*.*(..)) ")
+
+		public void afterServiceMethod() {
+
+			System.out.println("------- Logging from After aspects : Method called in service layer---------");
+
+		}
+
+		//service classes -> before any actual method, this advice will execute
+
+		//Around advice 
+
+		@Around("execution(* com.onlineBookShop.Shop.service.*.*(..)) ")
+
+		public void aroundServiceMethod(ProceedingJoinPoint joinPoint) throws Throwable {
+
+			long startTime = System.currentTimeMillis();
+
+			joinPoint.proceed();
+
+			long endTime = System.currentTimeMillis();
+
+			System.out.println("-----Logging : Method execution Time " + joinPoint.getSignature().getName()+ " executed in : "+ (endTime - startTime));
+
+		}
+
+}
+
+ 

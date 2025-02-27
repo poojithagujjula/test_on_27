@@ -1,0 +1,175 @@
+package Junit;
+ 
+import static org.junit.jupiter.api.Assertions.*;
+ 
+import org.junit.jupiter.api.Test;
+
+import org.junit.jupiter.params.ParameterizedTest;
+
+import org.junit.jupiter.params.provider.CsvSource;
+ 
+
+
+class OrderServicetest {
+
+	OrderService orderService =  new OrderService();
+
+	//calTotal
+
+	@Test
+
+	void testCalTotal(){
+
+		double total = orderService.calPrice(100.00, 2);
+
+		assertEquals(180,total, "Total should be 180 after 10% discount");
+
+		}
+
+ 
+	 
+
+		@Test
+
+		void test() {
+
+			OrderService os=new OrderService();
+
+			assertEquals(450, os.calPrice(50, 10));
+
+			//fail("Not yet implemented");
+
+		}
+
+		@Test
+
+		void testException()
+
+		{
+
+			OrderService os=new OrderService();
+
+			IllegalArgumentException exception=assertThrows(IllegalArgumentException.class, ()->{
+
+				os.placeOrder(12);
+
+			});
+
+		}
+
+		@Test
+
+		void SufficientStock()
+
+		{
+
+			OrderService os=new OrderService();
+
+			assertTrue(os.placeOrder(5));
+
+		}
+
+		@Test
+
+		void InSufficientStock()
+
+		{
+
+			OrderService os=new OrderService();
+
+			assertTrue(os.placeOrder(2));
+
+		}
+
+		@ParameterizedTest
+
+		@CsvSource({
+
+				"50, 10, 450",
+
+//				"7, 5, 12",
+
+				"10, 10, 90"
+
+//				"8, 9, 17"
+ 
+		})
+
+		void testAddParamcsv(int a, int b, int expected)
+
+		{
+
+			OrderService os=new OrderService();
+
+			assertEquals(expected,os.calPrice(a,b));
+
+		}
+
+		@Test
+
+		void testTimeout()
+
+		{
+
+			OrderService os=new OrderService();
+
+			assertTimeout(java.time.Duration.ofMillis(1000),()->{
+
+				Thread.sleep(500);
+
+				os.calPrice(50, 10);
+
+			});
+
+		}
+
+		@Test
+
+		void test0() {
+
+			OrderService os=new OrderService();
+
+			assertEquals(0, os.calPrice(50, 0));
+
+			//fail("Not yet implemented");
+
+		}
+
+	}
+
+	//testPlaceOrder()-> placeorder(5)-> succeed
+
+	//stock should reduced to 5
+
+
+//	@Test
+
+//	void test() {
+
+//		OrderService os=new OrderService();
+
+//		assertEquals(450, os.calPrice(50, 10));
+
+//		//fail("Not yet implemented");
+
+//	}
+
+// 
+
+//	@Test
+
+//	void testException()
+
+//	{
+
+//		OrderService os=new OrderService();
+
+//		IllegalArgumentException exception=assertThrows(IllegalArgumentException.class, ()->{
+
+//			os.placeOrder(12);
+
+//		});
+ 
+	
+
+ 

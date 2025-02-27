@@ -1,0 +1,24 @@
+package JUnit;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class CalculatorTest {
+
+	@Test
+	void testAdd() {
+		Calculator calc = new Calculator();
+		calc.add(5, 10); //functionality -. actual result
+		//assertion -> match in expected result, actual result
+		//assertEquals
+		assertEquals(15, calc.add(5, 10)); //test case for add method
+	}
+
+	@Test
+	void testSub() {
+		Calculator calc = new Calculator();
+		assertEquals(-5, calc.sub(5,10));
+	}
+
+}

@@ -1,0 +1,23 @@
+package MovieTicketBooking;
+
+public class MovieTicketBookingApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		//movie ticket booking app
+		System.out.println("Welcome to Movie Ticket Booking System");
+//		System.out.println();
+//		System.out.println();
+//		System.out.println();
+//		System.out.println();
+//		System.out.println();
+		ShowAvailableMovies obj=new ShowAvailableMovies();
+		obj.display();
+		
+		//choice : 1-> show available movies
+		//			2-> book ticket
+		//			3->
+	}
+
+}

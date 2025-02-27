@@ -1,0 +1,102 @@
+package MovieTicketBooking;
+
+import java.sql.*;
+import java.util.Scanner;
+
+
+public class BookingConfirmation {
+	public static void bookingConfirmation() throws SQLException {
+    	Connection conn = DatabaseConnection.getConnection();
+		if(conn==null) {
+			System.out.println("Database Connection Failed");
+			return;
+		}
+        Scanner scanner = new Scanner(System.in);
+
+        // Taking input from user
+        System.out.print("Enter your username: ");
+        String username = scanner.nextLine();
+        String fetchQuery = 
+                "SELECT booking.user_name, booking.booking_id, movies.title, shows.show_time, booking.seats_booked " +
+                "FROM bookings booking " +
+                "JOIN shows s ON booking.show_id = shows.show_id " +
+                "JOIN movies m ON s.movie_id = movies.movie_id " +
+                "WHERE booking.user_name = ?;";
+
+
+        try (PreparedStatement pstmt = conn.prepareStatement(fetchQuery)) {
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next()) {
+            if (rs.next()) {
+                String movieName = rs.getString("title");
+                String showTime = rs.getString("show_time");
+                int seatsBooked = rs.getInt("seats_booked");
+                int bookingId = rs.getInt("booking_id");
+
+                System.out.println("Booking Details:");
+                System.out.println("Username: " + username);
+                System.out.println("Booking ID: " + bookingId);
+                System.out.println("Movie Name: " + movieName);
+                System.out.println("Show Time: " + showTime);
+                System.out.println("Seats Booked: " + seatsBooked);
+            } else {
+                System.out.println("Booking details not found.");
+            }
+          }
+        } 
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+	
+	//ask username - preparedStatement
+	
+	//relating all three tables
+	
+	//Booking > Username, Booking Id
+	//Movies ->Movie Name
+	//Shows -> Showtime, seats booked ->
+
+/*	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+
+	        // Ask for username
+	        System.out.print("Enter your username: ");
+	        String username = scanner.nextLine();
+
+	        // Fetch booking confirmation details
+	        fetchBookingDetails(username);
+	    }
+
+	    private static void fetchBookingDetails(String username) {
+	        String query = "SELECT booking.username, booking.bookingid, movies.title AS moviename, shows.showtime, booking.seats " +
+	                       "FROM bookings booking " +
+	                       "JOIN shows s ON booking.showid = shows.showid " +
+	                       "JOIN movies m ON shows.movieid = movies.movieid " +
+	                       "WHERE booking.username = ?";
+
+	        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/moviedb", "root", "password");
+	             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+	            pstmt.setString(1, username);
+	            ResultSet rs = pstmt.executeQuery();
+
+	            while (rs.next()) {
+	                System.out.println("Username: " + rs.getString("username"));
+	                System.out.println("Booking ID: " + rs.getInt("bookingid"));
+	                System.out.println("Movie Name: " + rs.getString("moviename"));
+	                System.out.println("Showtime: " + rs.getTimestamp("showtime"));
+	                System.out.println("Seats Booked: " + rs.getInt("seats"));
+	                System.out.println("-----------------------------");
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+	*/
+

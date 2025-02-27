@@ -1,0 +1,27 @@
+package JUnit;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+
+
+import org.junit.jupiter.api.Test;
+
+class OrderServiceTest {
+
+	@Test
+	void test() {
+		OrderService os=new OrderService();
+		assertEquals(450, os.calPrice(50, 10));
+		//fail("Not yet implemented");
+	}
+ 
+	@Test
+	void testException()
+	{
+		OrderService os=new OrderService();
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()->{
+			os.placeOrder(12);
+		});
+
+	}
+}

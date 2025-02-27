@@ -1,0 +1,59 @@
+package MovieTicketBooking;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.Scanner;
+
+public class Test {
+
+	public static void main(String[] args) {
+		Connection conn = null;
+        CallableStatement cstmt = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            if (conn == null) {
+                System.out.println("Database Connection Failed");
+                return;
+            }
+ 
+            // Calling the stored procedure
+           //1 cstmt = conn.prepareCall("{CALL test2(?, ?)}");
+            cstmt = conn.prepareCall("{CALL test3(?, ?)}");
+
+            // Set the input parameter
+            System.out.print("Enter your movie Id: ");
+            Scanner scanner = new Scanner(System.in);
+            int movieId = scanner.nextInt();
+            cstmt.setInt(1, movieId);
+ 
+            // Register the output parameter
+          //1  cstmt.registerOutParameter(2, Types.VARCHAR);
+            cstmt.registerOutParameter(3, Types.VARCHAR);
+            // Execute the stored procedure
+            cstmt.execute();
+ 
+            // Retrieve the output parameter value
+           //1 String title = cstmt.getString(2);
+            String genre = cstmt.getString(3);
+           //1 System.out.println("Movie Title: " + title);
+            System.out.println("Movie Genre: " + genre);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (cstmt != null) cstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+		// TODO Auto-generated method stub
+		
+
+	
+	}
+
+}

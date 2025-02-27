@@ -1,0 +1,12 @@
+INSERT INTO authors (name) VALUES ('J.K.Rowling'),('Robert');
+
+INSERT INTO books (title, author_id, price) VALUES
+				  ('Spring Framework', 1, 350.00),
+				  ('MicroServices',2450.00);
+				  
+INSERT INTO orders(book_id,quantity) VALUES
+                   (1,2),
+                   (2,2);		
+                   
+                   
+                 

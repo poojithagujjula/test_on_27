@@ -1,0 +1,10 @@
+package MovieTicketBooking;
+
+public class ResultSetMetaDataApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

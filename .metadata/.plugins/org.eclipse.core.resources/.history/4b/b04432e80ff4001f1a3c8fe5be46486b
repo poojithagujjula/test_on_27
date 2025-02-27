@@ -1,0 +1,185 @@
+package com.onlinebookshop.shop;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.boot.CommandLineRunner;
+
+import org.springframework.boot.SpringApplication;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+ 
+import com.onlinebookshop.shop.model.Author;
+
+import com.onlinebookshop.shop.model.Book;
+
+import com.onlinebookshop.shop.model.Order;
+
+import com.onlinebookshop.shop.service.AuthorService;
+
+import com.onlinebookshop.shop.service.BookService;
+
+import com.onlinebookshop.shop.service.OrderService;
+
+@SpringBootApplication
+
+public class ShopApplication implements CommandLineRunner {
+
+	@Autowired
+
+	private BookService bookService ;
+
+	@Autowired
+
+	private AuthorService authorService;
+
+	@Autowired
+
+	private OrderService orderService;
+
+	public static void main(String[] args) {
+
+		SpringApplication.run(ShopApplication.class, args);
+
+	}
+
+	@Override
+
+	public void run(String... args) throws Exception {
+
+		// TODO Auto-generated method stub
+
+		// Test the services
+
+		//inject the service layer 
+
+		//add books
+
+	/*	Book book1 = new Book(1, "New Book JDBC", 300.00, 1);
+
+		Book book2 = new Book(2, "New Book JDBC 2", 350.00, 2);
+
+		bookService.addBook(book1);
+
+		bookService.addBook(book2);
+
+		System.out.println("Books added successfully");
+
+		//fetch all books 
+
+		List<Book> books = bookService.getAllBooks();
+
+		System.out.println("-----------Books List----------");
+
+		books.forEach(book -> 
+
+		System.out.println("Book ID : " + book.getId()+ " , Title : "+ book.getTitle()+ " , Price : "+ book.getPrice()));
+
+		//get book by id
+
+		int bookId =1;
+
+		Book foundBook = bookService.getBookById(bookId);
+
+		System.out.println("The ");
+
+		//update
+
+		foundBook.setPrice(450.00);
+
+		bookService.updateBook(foundBook);
+
+		System.out.println("Updated Price : "+ foundBook.getPrice());
+
+		//delete
+
+		int bookId2 = 3;
+
+  	bookService.deleteById(bookId2);
+
+		System.out.println(" The book with Id " + bookId + " is deleted");
+
+		//fetch updated book list
+
+		bookService.getAllBooks().forEach(book -> 
+
+		System.out.println("Book ID : " + book.getId()+ " , Title : "+ book.getTitle()+ " , Price : "+ book.getPrice()));
+
+*/
+
+
+//		 Add authors
+        Author author1 = new Author(1, "Author One", "Country A");
+        Author author2 = new Author(2, "Author Two", "Country B");
+        authorService.addAuthor(author1);
+        authorService.addAuthor(author2);
+        System.out.println("Authors added successfully");
+ 
+        // Fetch all authors
+        List<Author> authors = authorService.getAllAuthors();
+        System.out.println("----Author list----");
+        authors.forEach(author ->
+            System.out.println("Author ID: " + author.getId() + ", Name: " + author.getName() + ", Country: " + author.getCountry())
+        );
+ 
+        // Get author by id
+        int authorId = 1;
+        Author foundAuthor = authorService.getAuthorById(authorId);
+        System.out.println("Found Author: " + foundAuthor.getName());
+ 
+        // Update author
+        foundAuthor.setCountry("Updated Country");
+        authorService.updateAuthor(foundAuthor);
+        System.out.println("Updated Author ID: " + foundAuthor.getId() + ", Updated Country: " + foundAuthor.getCountry());
+ 
+        // Delete author
+        int authorIdToDelete = 2;
+        authorService.deleteById(authorIdToDelete);
+        System.out.println("Author with ID " + authorIdToDelete + " deleted");
+ 
+        // Fetch updated author list
+        authorService.getAllAuthors().forEach(author ->
+            System.out.println("Author ID: " + author.getId() + ", Name: " + author.getName() + ", Country: " + author.getCountry())
+        );
+  	Order or1 = new Order(9, 2);
+
+		Order or2 = new Order(5, 2);
+
+		orderService.addOrder(or1);
+
+		orderService.addOrder(or2);
+
+		System.out.println("Orders added successfully");
+
+		//fetch all authors 
+
+		List<Order> orders = orderService.getAllOrders();
+
+		System.out.println("-----------Order List----------");
+
+		orders.forEach(order -> 
+
+		System.out.println("Book ID : " + order.getId()+ " , BookId : "+ order.getBookId()+ " , Quantity : "+ order.getQuantity()));
+
+		//get book by id
+
+		int orderId =1;
+
+		Order foundOrder = orderService.getOrderById(orderId);
+
+		System.out.println("The ");
+
+		//update
+
+		foundOrder.setQuantity(5);
+
+		orderService.updateOrder(foundOrder);
+
+		System.out.println("Updated quantity : "+ foundOrder.getQuantity());
+
+	} 
+
+	}
+
+ 

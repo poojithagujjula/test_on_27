@@ -1,0 +1,187 @@
+package MovieTicketBooking;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class TicketBooking {
+	
+	public void bookTicket() throws SQLException {
+		Connection conn = DatabaseConnection.getConnection();
+		if(conn==null) {
+			System.out.println("Database Connection Failed");
+			return;
+		}
+        Scanner scanner = new Scanner(System.in);
+ 
+        // Step 1: Take user input
+        System.out.print("Enter your username: ");
+        String username = scanner.nextLine();
+ 
+        // Step 2: Show available movies
+        ShowAvailableMovies.displayMovies();
+ 
+        // Step 3: Ask user to choose show_id
+        System.out.print("Enter the show_id you want to book: ");
+        int showId = scanner.nextInt();
+ 
+        // Step 4: Check available seats
+        String checkSeatsQuery = "SELECT available_seats FROM shows WHERE show_id = ?;";
+        int availableSeats = 0;
+        try (PreparedStatement pstmt = conn.prepareStatement(checkSeatsQuery)) {
+            pstmt.setInt(1, showId);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                availableSeats = rs.getInt("available_seats");
+            } else {
+                System.out.println("Show not found.");
+                return;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
+ 
+        // Step 5: Ask user for number of seats
+        System.out.print("Enter the number of seats you want to book: ");
+        int numberOfSeats = scanner.nextInt();
+ 
+        // Check if enough seats are available
+        if (availableSeats >= numberOfSeats) {
+            // Update the booking table
+            String bookTicketQuery = "INSERT INTO bookings (user_name, show_id, seats_booked) VALUES (?, ?, ?);";
+            try (PreparedStatement pstmt = conn.prepareStatement(bookTicketQuery)) {
+                pstmt.setString(1, username);
+                pstmt.setInt(2, showId);
+                pstmt.setInt(3, numberOfSeats);
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return;
+            }
+ 
+            // Update the available seats in shows table
+            String updateSeatsQuery = "UPDATE shows SET available_seats = available_seats - ? WHERE show_id = ?;";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(updateSeatsQuery)) {
+                pstmt.setInt(1, numberOfSeats);
+                pstmt.setInt(2, showId);
+                int rowsUpdated = pstmt.executeUpdate();
+                if (rowsUpdated > 0) {
+                    System.out.println("Ticket booked successfully!");
+                } else {
+                    System.out.println("Failed to update available seats.");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        } 
+        else {
+            // If seats not available
+            System.out.println("Not enough seats available.");
+        }
+    }
+}
+	
+	/*	Connection conn=DatabaseConnection.getConnection();
+		if(conn==null)
+		{
+			System.out.println("Database connection failed");
+			return;
+		}
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter your username: ");
+        String username = sc.nextLine();
+        showAvailableMovies.displayMovies();
+        System.out.print("Enter the show ID you want to book: ");
+        int showId = sc.nextInt();
+        int availableSeats = checkSeats(showId);
+        if (availableSeats == -1) {
+            System.out.println("Invalid show ID.");
+            return;
+        }
+        System.out.print("Enter the number of seats to book: ");
+        int noOfSeats = sc.nextInt();
+        if (availableSeats >= noOfSeats) {
+            bookSeats(username, showId, noOfSeats);
+            updateSeats(showId, availableSeats - noOfSeats);
+        } else {
+            System.out.println("Not enough available seats.");
+        }
+    }
+ 
+    private void showAvailableMovies() {
+        String query = "SELECT movies.movie_id, movies.title, shows.show_id, shows.showtime, shows.availableseats " +
+                       "FROM movies " +
+                       "JOIN shows ON movies.movie_id = shows.movie_id;";
+        try (Statement smt = conn.createStatement()) {
+            ResultSet rs = smt.executeQuery(query);
+            while (rs.next()) {
+                int movieId = rs.getInt("movie_id");
+                String title = rs.getString("title");
+                int showId = rs.getInt("show_id");
+                String showTime = rs.getString("showtime");
+                int availableSeats = rs.getInt("availableseats");
+ 
+                System.out.println("Movie Id: " + movieId);
+                System.out.println("Title: " + title);
+                System.out.println("Show Id: " + showId);
+                System.out.println("Show Time: " + showTime);
+                System.out.println("Available Seats: " + availableSeats);
+                System.out.println("---------------------------");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+ 
+    private int checkSeats(int showId) {
+        String query = "SELECT availableseats FROM shows WHERE show_id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, showId);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("availableseats");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+ 
+    private void bookSeats(String username, int showId, int noOfSeats) {
+        String query = "INSERT INTO booking (username, show_id, seats) VALUES (?, ?, ?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, username);
+            pstmt.setInt(2, showId);
+            pstmt.setInt(3, noOfSeats);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+ 
+    private void updateSeats(int showId, int newSeatCount) {
+        String query = "UPDATE shows SET availableseats = ? WHERE show_id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, newSeatCount);
+            pstmt.setInt(2, showId);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+ 
+    public static void main(String[] args) {
+        // Assuming you have a valid connection object 'conn'
+        Connection conn = null; // Initialize your connection here
+        TicketBooking ticketBooking = new TicketBooking(conn);
+        ticketBooking.bookTicket();
+    }
+}
+
+}*/

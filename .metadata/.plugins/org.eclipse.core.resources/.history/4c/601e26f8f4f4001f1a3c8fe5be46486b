@@ -1,0 +1,413 @@
+<!--  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Book Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Online Book Shop</h1>
+    <table>
+        <tr>
+            <th>BookID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>A</td>
+            <td>aa</td>
+            <td>99</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>B</td>
+            <td>bb</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>C</td>
+            <td>cc</td>
+            <td>200</td>
+        </tr>
+    </table>
+    <form action="#" method="post">
+        <label for="bookid">BookID:</label>
+        <input type="number" id="bookid" name="bookid" required>
+        
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+        
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required>
+        
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+-->
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Online Book Shop </title>
+	</head>
+	
+	<body>
+		<h1>Welcome to Online Shop</h1>
+	</body>
+	
+	<script>
+		function example(){
+			
+			if(true){
+				var  x =20
+				console.log(x);
+			}
+			x=15
+			console.log(x);
+		}
+		example();
+	</script>
+</html>    -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Online Book Shop </title>
+	</head>
+	
+	<body>
+		<h1>Welcome to Online Shop</h1>
+	</body>
+	
+	<script>
+		function example(){
+			let a=5, b=3, c=4
+			let name = "Poojitha"
+				console.log(a>b||a>b);
+				console.log("5"==5);
+			    console.log("5"===5);
+			    console.log(5 != '5');  // Not equal -> false
+				console.log(5 !== '5'); // Strict not equal -> true
+				console.log(5 > 3 && 5 > 2);  // AND (both conditions must be true) -> true
+				console.log(5 > 3 || 5 < 2);  // OR (at least one condition is true) -> true
+				console.log(!(5 > 3));        // NOT (negates the condition) -> false
+
+				console.log("Hello," +name+ "Welcome");
+				name = "Tanuj";
+			    console.log(`Hello, ${name} Welcome`);
+
+				
+				let text = "This is line1. \n" + "This is line2.";
+			    console.log(text);
+			    text = `This is line1.
+						This is line2.`;
+			    console.log(text);
+			    let product = "Laptop";
+			    let price = 55000;
+			    console.log(`The price of ${product} is ${price}`);
+			let txt ="JavaScript Training"
+			console.log(txt.length);
+			console.log(txt.toUpperCase());
+			console.log(txt.toLowerCase());
+			console.log(txt.trim());
+			console.log(txt.slice(2,7));
+			console.log(txt.replace("Training","Learning"));
+			
+			let array ="1,2,3"
+			console.log(array.split(", "));
+
+			let gadgets = ["Laptop", "Smartphone", "TV"];
+		    console.log(gadgets[2]);
+		 
+		    gadgets.push("Earphone");
+		    console.log(gadgets);
+		 
+		    gadgets.pop();
+		    console.log(gadgets);
+		 
+		    gadgets.shift();
+		    console.log(gadgets);
+		 
+		    gadgets.unshift("Mic");
+		    console.log(gadgets);
+		 
+		    console.log(gadgets.indexOf("Smartphone"));
+		    console.log(gadgets.includes("Earphone"));
+		 
+		    console.log(gadgets.slice(1, 2));
+		 
+		    gadgets.splice(1, 2);
+		    console.log(gadgets);
+		 
+		    console.log(gadgets.join(" - "));
+		 
+		    gadgets.reverse();
+		    console.log(gadgets);
+		 
+		    gadgets.sort();
+		    console.log(gadgets);
+		 
+		    gadgets.forEach(gadget => console.log(gadget));
+		    
+		    
+		    let numbers = [1, 2, 3, 4, 5];
+		    let squaredNumbers = numbers.map(num => num * num);
+		    console.log(squaredNumbers);
+
+		    let person ={
+		    		name:"poojitha",
+		    		age: 22,
+		    		hasVoterCard:false
+		    };
+		    
+		    console.log(person)
+		    
+		    // Deleting a property from an object
+		     let person1 ={
+		    		name:"Harsha",
+		    		age: 20,
+		    		hasVoterCard:true
+		    };
+		    delete person1.hasVoterCard;
+		    console.log(person1)
+		    
+		 // Objects can have functions as properties
+		    let user = {
+		        name: "Lohinaz",
+		        greet: function() {
+		    console.log(`Hello, my name is ${this.name}`);
+		        }
+		    };
+		     
+		    user.greet();  // Output: Hello, my name is Lohinaz
+		     
+		 // Object Destructuring (ES6)
+		 // Extract object properties using shorter syntax
+		 let personData = { name2: "Ajay", age2: 25, city2: "Delhi" };
+		 let { name2, age2, city2 } = personData;
+		 console.log(age2);  // Output: 25
+		  
+		 // Object Spread Operator (ES6)
+		 // Used for copying or merging objects
+		  
+		 // Copy objects
+		 let obj1 = { a: 12, b: 15 };
+		 let obj2 = { ...obj1, c: 20 };
+		 console.log(obj2);  // Output: { a: 12, b: 15, c: 20 }
+		  
+		 // Merge objects
+		 let userP = { name: "Tanuj", age: 25 };
+		 let userLoc = { city: "MP", country: "India" };
+		 let userAll = { ...userP, ...userLoc };
+		  
+		 console.log(userAll);  
+		 // Output: { name: "Tanuj", age: 25, city: "MP", country: "India" }
+		    
+		 for (let key in person) {
+	            console.log(key + ": " + person[key]);
+	        }
+	 
+	        for (let gadget of gadgets) {
+	            console.log(gadget);
+	        }
+	 
+	        for (let number of numbers) {
+	            console.log(number);
+	        }
+
+
+	 
+	        const add = function(a, b) {
+	            return a + b;
+	        };
+	        console.log(add(4, 5));
+	 
+	        const multiply = (x, y) => x * y;
+	        console.log(multiply(12, 23));
+	 
+	        const cube = x => x * x * x;
+	        console.log(cube(5));
+	 
+	        const greet = (name) => {
+	            let message = `Hello, ${name}, Welcome`;
+	            return message;
+	        };
+	        console.log(greet("Tanuj"));
+	 
+	        // Higher Order Function (HOF)
+	        const hofExample = (fn, x, y) => {
+	            return fn(x, y);
+	        };
+	        console.log(hofExample(add, 4, 5));
+	 
+	        // Object with function as property
+	        let user2 = {
+	            name: "Tanuj",
+	            greet: function() {
+	                console.log(`Hello, my name is ${this.name}`);
+	            }
+	        }
+	        const hotelRooms = [
+	            { type: "Standard", price: 5000, available: true },
+	            { type: "Deluxe", price: 8000, available: true },
+	            { type: "Suite", price: 12000, available: false },
+	            { type: "Penthouse", price: 15000, available: true }
+	       ];
+	        
+	       function findAvailableRooms(rooms, minPrice, maxPrice) {
+	            return rooms
+	                .filter(room => room.price >= minPrice && room.price <= maxPrice && room.available)
+	                .map(room => ({
+	                    type: room.type,
+	                    price: room.price
+	                }));
+	       }
+	        
+	       const availableRooms = findAvailableRooms(hotelRooms, 5000, 16000);
+	       console.log(availableRooms);
+	       
+	       const cartItems = [
+
+	    	     { name: "Laptop", price: 55000, quantity: 1 },
+
+	    	     { name: "Smartphone", price: 30000, quantity: 2 },
+
+	    	     { name: "Headphones", price: 3000, quantity: 1 }
+
+	    	];
+	    	 
+	    	function generateReceipt(cart) {
+
+	    	     let total = 0;
+	    	 
+	    	     console.log("Receipt:");
+
+	    	     console.log("------------------------------");
+	    	 
+	    	     cart.forEach(item => {
+
+	    	         const itemTotal = item.price * item.quantity;
+
+	    	         console.log(`${item.name} - Price: ₹${item.price}, Quantity: ${item.quantity}, Total: ₹${itemTotal}`);
+
+	    	         total += itemTotal;
+
+	    	     });
+	    	 
+	    	     console.log("------------------------------");
+
+	    	     console.log(`Total Price: ₹${total}`);
+
+	    	}
+	    	 
+	    	generateReceipt(cartItems);
+	    	
+	    	// Creating a constant object with student data
+	        const studentData = [
+	            { 
+	                name: "Harsha", 
+	                marks: { math: 85, science: 90, english: 88 } 
+	            },
+	            { 
+	                name: "Lohinaz", 
+	                marks: { math: 78, science: 82, english: 80 } 
+	            },
+	            { 
+	                name: "Tirtha", 
+	                marks: { math: 92, science: 95, english: 94 } 
+	            },
+	            { 
+	                name: " Snehitha",
+	                marks: { math: 70, science: 75, english: 72 } 
+	            }
+	        ];
+	 
+	        // Function to generate report card for a student
+	        function generateReportCard(student) {
+	            let { name, marks } = student;
+	            let totalMarks = marks.math + marks.science + marks.english;
+	            let averageMarks = totalMarks / 3;
+	            let percentage = (totalMarks / 300) * 100;
+	 
+	            console.log(`Report card for ${name}:`);
+	            console.log(`Total marks: ${totalMarks}`);
+	            console.log(`Average marks: ${averageMarks}`);
+	            console.log(`Percentage: ${percentage}%`);
+	        }
+	 
+	        // Generating report cards for all students
+	        studentData.forEach(student => generateReportCard(student));
+	    	 
+		}
+		example();
+	
+	</script>
+</html>
+
+

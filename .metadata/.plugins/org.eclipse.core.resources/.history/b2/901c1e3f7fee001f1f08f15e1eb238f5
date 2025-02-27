@@ -1,0 +1,82 @@
+package JUnit;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+class OrderServiceTest {
+
+/*	//calTotal
+	@Test
+	void testCalTotal()	{
+	double  total = orderService.calPrice(100.00,2);
+	assertEquals(180, total, "Total should be 180 after 10% discount");
+	}
+	*/
+	@Test
+	void test() {
+		OrderService os=new OrderService();
+		assertEquals(450, os.calPrice(50, 10));
+	}
+ 
+	@Test
+	void testException()
+	{
+		OrderService os=new OrderService();
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()->{
+			os.placeOrder(13);
+		});
+
+	}
+	@Test
+	void SufficientStock()
+	{
+		OrderService os=new OrderService();
+		assertTrue(os.placeOrder(5));
+	}
+	@Test
+	void InSufficientStock()
+	{
+		OrderService os=new OrderService();
+		assertTrue(os.placeOrder(15));
+	}
+	@ParameterizedTest
+	@CsvSource({
+			"50, 100, 450",
+			"10, 10, 90"
+//			"7, 5, 12",
+//			"8, 9, 17"
+
+	})
+	void testAddParamcsv(int a, int b, int expected)
+	{
+		OrderService os=new OrderService();
+		assertEquals(expected,os.calPrice(a,b));
+	}
+	@Test
+	void testTimeout()
+	{
+		OrderService os=new OrderService();
+		assertTimeout(java.time.Duration.ofMillis(1000),()->{
+			Thread.sleep(2000);
+			os.calPrice(50, 10);
+		});
+	}
+	@Test
+	void test0() {
+		OrderService os=new OrderService();
+		assertEquals(0, os.calPrice(50, 0));
+		//fail("Not yet implemented");
+	}
+	//sufficient stock
+	//testPlaceOrder() -> placeorder(5) -> succeed ->assertTrue
+	//stock should reduce to 5, assertEquals(5,getStock())
+	
+	//insufficient stock
+		//PlaceOrder() -> assertThrows -> IllegalArgException
+		// assertEquals("insufficient Stock", var.getmsg();
+}

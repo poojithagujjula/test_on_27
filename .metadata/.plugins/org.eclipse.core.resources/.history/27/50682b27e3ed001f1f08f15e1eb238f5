@@ -1,0 +1,74 @@
+package JUnit;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+class CalculatorTest {
+
+	@Test
+	void testAdd() {
+		Calculator calc = new Calculator();
+		calc.add(5, 10); //functionality -. actual result
+		//assertion -> match in expected result, actual result
+		//assertEquals
+		assertEquals(15, calc.add(5, 10)); //test case for add method
+	}
+
+	@Test
+	void testSub() {
+		Calculator calc = new Calculator();
+		assertEquals(-5, calc.sub(5,10));
+	}
+	
+	//assertTrue(condition) -> verify that condition is true
+	//assertFalse(condition) -> verify that cond is false
+	
+	@Test
+	void testConditionT() {
+		Calculator calc = new Calculator();
+		assertTrue(calc.add(2,9)>0);
+	}
+	
+	@Test
+	void testConditionF() {
+		Calculator calc = new Calculator();
+		assertFalse(calc.sub(9,8)<0);
+	}
+	@Test
+	void testNull() {
+		Calculator calc = new Calculator();
+		assertNull(calc.add(null,null));
+	}
+	
+	@Test
+	void testNotNull() {
+		Calculator calc = new Calculator();
+		assertNotNull(calc.add(2,8));
+	}
+	
+   //Parameterized Tests
+   //Scenario -> run the same test with different sets of data
+   // similar test cases
+   // use @ParameterizedTest, source of arguments ->
+	
+	
+	@ParameterizedTest
+	@CsvSource ({
+		"5, 7, 12",
+		"3, 6, 9",
+		"7, 5, 12",
+		"8, 9, 17"
+	})
+	//a b expected
+	void testAddParam(int number) {
+		Calculator calc = new Calculator();
+		assertEquals(number+10, calc.add(number,10));
+		
+	}
+	
+	//6 tests + 4 times -> 10 cases will run
+	
+}

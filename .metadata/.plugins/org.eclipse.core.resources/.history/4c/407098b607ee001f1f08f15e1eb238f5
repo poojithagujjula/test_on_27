@@ -1,0 +1,4 @@
+module MovieTicketBookingSystem {
+	requires java.sql;
+	requires java.sql.rowset;
+}

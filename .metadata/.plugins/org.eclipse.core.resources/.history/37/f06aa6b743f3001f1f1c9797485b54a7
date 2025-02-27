@@ -1,0 +1,30 @@
+spring.application.name=EMS
+
+#Address Configuration
+address.street = 123 Main Street
+address.city = New Delhi
+address.state = Delhi
+address.zipcode = 123455
+
+# Department Configuration
+department.id = 101
+department.name = IT
+
+# Employee Configuration
+employee.id = 2
+employee.name = Poojitha Gujjula
+employee.email = poojitha@gmail.com
+employee.phone = 123456789
+employee.salary = 50000
+employee.designation = Software
+employee.skills = Java, SQL, Spring
+
+#Performance Configuration
+performance.employeeId 
+performance.rating = 4.5
+performance.feedback = Good
+performance.projectsHandled = projectA, projectB
+performance.eligibleForPromotion = true
+
+
+

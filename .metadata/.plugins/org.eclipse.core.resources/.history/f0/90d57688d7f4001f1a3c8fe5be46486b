@@ -1,0 +1,245 @@
+<!--  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Book Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Online Book Shop</h1>
+    <table>
+        <tr>
+            <th>BookID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>A</td>
+            <td>aa</td>
+            <td>99</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>B</td>
+            <td>bb</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>C</td>
+            <td>cc</td>
+            <td>200</td>
+        </tr>
+    </table>
+    <form action="#" method="post">
+        <label for="bookid">BookID:</label>
+        <input type="number" id="bookid" name="bookid" required>
+        
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+        
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required>
+        
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+-->
+
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Online Book Shop </title>
+	</head>
+	
+	<body>
+		<h1>Welcome to Online Shop</h1>
+	</body>
+	
+	<script>
+		function example(){
+			
+			if(true){
+				var  x =20
+				console.log(x);
+			}
+			x=15
+			console.log(x);
+		}
+		example();
+	</script>
+</html>    -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> Online Book Shop </title>
+	</head>
+	
+	<body>
+		<h1>Welcome to Online Shop</h1>
+	</body>
+	
+	<script>
+		function example(){
+			let a=5, b=3, c=4
+			let name = "Poojitha"
+				console.log(a>b||a>b);
+				console.log("5"==5);
+			    console.log("5"===5);
+			    console.log(5 != '5');  // Not equal -> false
+				console.log(5 !== '5'); // Strict not equal -> true
+				console.log(5 > 3 && 5 > 2);  // AND (both conditions must be true) -> true
+				console.log(5 > 3 || 5 < 2);  // OR (at least one condition is true) -> true
+				console.log(!(5 > 3));        // NOT (negates the condition) -> false
+
+				console.log("Hello," +name+ "Welcome");
+				name = "Tanuj";
+			    console.log(`Hello, ${name} Welcome`);
+
+				
+				let text = "This is line1. \n" + "This is line2.";
+			    console.log(text);
+			    text = `This is line1.
+						This is line2.`;
+			    console.log(text);
+			    let product = "Laptop";
+			    let price = 55000;
+			    console.log(`The price of ${product} is ${price}`);
+			let txt ="JavaScript Training"
+			console.log(txt.length);
+			console.log(txt.toUpperCase());
+			console.log(txt.toLowerCase());
+			console.log(txt.trim());
+			console.log(txt.slice(2,7));
+			console.log(txt.replace("Training","Learning"));
+			
+			let array ="1,2,3"
+			console.log(array.split(", "));
+
+			let gadgets = ["Laptop", "Smartphone", "TV"];
+		    console.log(gadgets[2]);
+		 
+		    gadgets.push("Earphone");
+		    console.log(gadgets);
+		 
+		    gadgets.pop();
+		    console.log(gadgets);
+		 
+		    gadgets.shift();
+		    console.log(gadgets);
+		 
+		    gadgets.unshift("Mic");
+		    console.log(gadgets);
+		 
+		    console.log(gadgets.indexOf("Smartphone"));
+		    console.log(gadgets.includes("Earphone"));
+		 
+		    console.log(gadgets.slice(1, 2));
+		 
+		    gadgets.splice(1, 2);
+		    console.log(gadgets);
+		 
+		    console.log(gadgets.join(" - "));
+		 
+		    gadgets.reverse();
+		    console.log(gadgets);
+		 
+		    gadgets.sort();
+		    console.log(gadgets);
+		 
+		    gadgets.forEach(gadget => console.log(gadget));
+		    
+		    
+		    let numbers = [1, 2, 3, 4, 5];
+		    let squaredNumbers = numbers.map(num => num * num);
+		    console.log(squaredNumbers);
+
+		    let person ={
+		    		name:"poojitha",
+		    		age: 22,
+		    		hasVoterCard:false
+		    };
+		    
+		    console.log(person)
+		    
+		     let person1 ={
+		    		name:"Harsha",
+		    		age: 20,
+		    		hasVoterCard:true
+		    };
+		    delete person1.hasVoterCard;
+		    console.log(person1)
+		    
+		}
+		example();
+	
+	</script>
+</html>
+
+

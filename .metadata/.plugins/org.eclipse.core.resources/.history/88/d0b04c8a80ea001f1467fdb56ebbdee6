@@ -1,0 +1,10 @@
+package MovieTicketBooking;
+
+public class TicketCancellation {
+
+	//username
+	//date -> comparision with current date(optional)
+	
+	//update shows -> available seats should be increased
+	//booking -> table->delete that booking id row
+}
